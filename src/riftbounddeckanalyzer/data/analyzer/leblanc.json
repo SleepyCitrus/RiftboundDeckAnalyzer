@@ -1,4 +1,6 @@
 {
+    "excluded_cards": [],
+    "excluded_decks": 0,
     "combined_chosen_champs": {
         "LeBlanc, Fragmented": 1.0
     },

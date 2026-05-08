@@ -49,6 +49,6 @@ def get_user_input[T](
                     ]
                 }
         else:
-            if multiselect and selections:
+            if multiselect:
                 return selections
             retry = True
