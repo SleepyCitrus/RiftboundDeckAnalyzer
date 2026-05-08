@@ -7,15 +7,16 @@ from typing import TextIO
 
 from riftbounddeckanalyzer.analyzers.deck_analyzer import DeckAnalyzer
 from riftbounddeckanalyzer.decks.deck import DATE_FORMAT, Deck
+from riftbounddeckanalyzer.readers.decklist_metadata import DecklistMetadata
 from riftbounddeckanalyzer.readers.utils.util import get_user_input
 
-decks_path = Path(f"{Path.cwd()}/src/riftbounddeckanalyzer/data/decklists")
+DECKS_PATH = Path(f"{Path.cwd()}/src/riftbounddeckanalyzer/data/decklists")
 
 
 @dataclass
 class DeckReader:
 
-    def read_date(self, file: TextIO) -> str:
+    def read_raw_line(self, file: TextIO) -> str:
         try:
             return next(file).strip()
         except StopIteration:
@@ -46,43 +47,52 @@ class DeckReader:
         unique_cards = set()
 
         for deck_file in deck_files:
+
+            placement = int("".join(filter(str.isdigit, deck_file.name.split(" ")[0])))
+
             with open(deck_file, "r") as f:
-                deck = Deck()
+                deck = Deck(placement)
                 skip = False
                 for l in f:
                     line = l.strip()
-                    if "Date:" in line:
-                        date = self.read_date(f)
+                    if DecklistMetadata.DATE in line:
+                        date = self.read_raw_line(f)
                         if not date:
                             # Bad file format, skip this deck
                             skip = True
                             break
                         deck.date = datetime.strptime(date, DATE_FORMAT)
-                    elif "Legend:" in line:
+                    elif DecklistMetadata.TOURNAMENT_SIZE in line:
+                        tournament_size = self.read_raw_line(f)
+                        if not tournament_size:
+                            skip = True
+                            break
+                        deck.tournament_size = int(tournament_size)
+                    elif DecklistMetadata.LEGEND in line:
                         legend, _ = self.read_single_line(f)
                         if not legend:
                             # Bad file format, skip this deck
                             skip = True
                             break
                         deck.legend = legend
-                    elif "Champion:" in line:
+                    elif DecklistMetadata.CHAMPION in line:
                         chosen_champ, _ = self.read_single_line(f)
                         if not chosen_champ:
                             # Bad file format, skip this deck
                             skip = True
                             break
                         deck.chosen_champion = chosen_champ
-                    elif "MainDeck:" in line:
+                    elif DecklistMetadata.MAIN_DECK in line:
                         cards = self.read_block(f)
                         deck.main_deck = cards
                         unique_cards.update(cards.keys())
-                    elif "Battlefields:" in line:
+                    elif DecklistMetadata.BATTLEFIELDS in line:
                         cards = self.read_block(f)
                         deck.battlefields = cards
-                    elif "Rune Pool:" in line:
+                    elif DecklistMetadata.RUNES in line:
                         cards = self.read_block(f)
                         deck.runes = cards
-                    elif "Sideboard:" in line:
+                    elif DecklistMetadata.SIDEBOARD in line:
                         cards = self.read_block(f)
                         deck.sideboard = cards
 
@@ -98,7 +108,7 @@ class DeckReader:
         deck information about.
         """
         legends = {
-            x.as_posix().split("/")[-1]: x for x in decks_path.iterdir() if x.is_dir()
+            x.as_posix().split("/")[-1]: x for x in DECKS_PATH.iterdir() if x.is_dir()
         }
 
         user_input = get_user_input(
@@ -118,7 +128,8 @@ class DeckReader:
         )
 
         analyzer = DeckAnalyzer(decks, list(excluded_cards.keys()))
-        analyzer.aggregate().pretty_print()
+        results = analyzer.aggregate()
+        results.pretty_print()
 
         output_path = Path(
             f"{Path.cwd()}/src/riftbounddeckanalyzer/data/analyzer/{legend_name}.json"
@@ -127,7 +138,7 @@ class DeckReader:
 
         with open(output_path, "w") as f:
             json.dump(
-                asdict(analyzer, dict_factory=analyzer.exclude_base_decks),
+                asdict(results),
                 f,
                 indent=4,
                 default=lambda o: o.isoformat() if isinstance(o, datetime) else str(o),

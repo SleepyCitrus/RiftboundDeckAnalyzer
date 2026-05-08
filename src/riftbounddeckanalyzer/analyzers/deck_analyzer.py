@@ -1,10 +1,8 @@
 from collections import defaultdict
-from dataclasses import dataclass, field
-from pprint import pprint
-from typing import Self
+from dataclasses import dataclass
 
+from riftbounddeckanalyzer.analyzers.analyzer_result import AnalyzerResult
 from riftbounddeckanalyzer.decks.deck import Deck
-from riftbounddeckanalyzer.readers.utils.util import get_user_input
 
 
 @dataclass
@@ -13,25 +11,21 @@ class DeckAnalyzer:
     decks: list[Deck]
     excluded_cards: list[str]
 
-    excluded_decks: int = 0
-    combined_chosen_champs: dict[str, float] = field(default_factory=lambda: {})
-    combined_main_deck: dict[str, float] = field(default_factory=lambda: {})
-    combined_battlefields: dict[str, float] = field(default_factory=lambda: {})
-    combined_runes: dict[str, float] = field(default_factory=lambda: {})
-    combined_sideboards: dict[str, float] = field(default_factory=lambda: {})
-
     def exclude_base_decks(self, items):
         return {k: v for k, v in items if k != "decks"}
 
-    def aggregate(self) -> Self:
-        chosen_champs = defaultdict(int)
-        main_deck = defaultdict(int)
-        battlefields = defaultdict(int)
-        runes = defaultdict(int)
-        sideboard = defaultdict(int)
+    def aggregate(self) -> AnalyzerResult:
+        chosen_champs = defaultdict(float)
+        main_deck = defaultdict(float)
+        battlefields = defaultdict(float)
+        runes = defaultdict(float)
+        sideboard = defaultdict(float)
 
+        valid_decks: list[Deck] = []
+        total_weight = 0
+        excluded_decks = 0
         for deck in self.decks:
-
+            # get total weight
             skip = False
             for excluded_card in self.excluded_cards:
                 if (
@@ -41,68 +35,60 @@ class DeckAnalyzer:
                     skip = True
 
             if skip:
-                self.excluded_decks += 1
+                excluded_decks += 1
                 continue
 
-            chosen_champs[deck.chosen_champion] += 1
+            total_weight += deck.placement_weight
+            valid_decks.append(deck)
+
+        for deck in valid_decks:
+            chosen_champs[deck.chosen_champion] += (
+                1 * deck.placement_weight / total_weight
+            )
 
             # Consider chosen champion as part of the main deck.
-            main_deck[deck.chosen_champion] += 1
+            main_deck[deck.chosen_champion] += 1 * deck.placement_weight / total_weight
             for main_card, val in deck.main_deck.items():
-                main_deck[main_card] += val
+                main_deck[main_card] += val * deck.placement_weight / total_weight
 
             for bf, val in deck.battlefields.items():
-                battlefields[bf] += val
+                battlefields[bf] += val * deck.placement_weight / total_weight
 
             for rune, val in deck.runes.items():
-                runes[rune] += val
+                runes[rune] += val * deck.placement_weight / total_weight
 
             for side_card, val in deck.sideboard.items():
-                sideboard[side_card] += val
+                sideboard[side_card] += val * deck.placement_weight / total_weight
 
-        chosen_champs = {
-            c: round(v / (len(self.decks) - self.excluded_decks), 2)
-            for c, v in chosen_champs.items()
-        }
-        self.combined_chosen_champs = dict(
+        chosen_champs = {c: round(v, 2) for c, v in chosen_champs.items()}
+        combined_chosen_champs = dict(
             sorted(chosen_champs.items(), key=lambda item: item[1], reverse=True)
         )
 
-        main_deck = {
-            c: round(v / (len(self.decks) - self.excluded_decks), 2)
-            for c, v in main_deck.items()
-        }
-        self.combined_main_deck = dict(
+        main_deck = {c: round(v, 2) for c, v in main_deck.items()}
+        combined_main_deck = dict(
             sorted(main_deck.items(), key=lambda item: item[1], reverse=True)
         )
 
-        battlefields = {
-            c: round(v / (len(self.decks) - self.excluded_decks), 2)
-            for c, v in battlefields.items()
-        }
-        self.combined_battlefields = dict(
+        battlefields = {c: round(v, 2) for c, v in battlefields.items()}
+        combined_battlefields = dict(
             sorted(battlefields.items(), key=lambda item: item[1], reverse=True)
         )
-        runes = {
-            c: round(v / (len(self.decks) - self.excluded_decks), 2)
-            for c, v in runes.items()
-        }
-        self.combined_runes = dict(
+        runes = {c: round(v, 2) for c, v in runes.items()}
+        combined_runes = dict(
             sorted(runes.items(), key=lambda item: item[1], reverse=True)
         )
-        sideboard = {
-            c: round(v / (len(self.decks) - self.excluded_decks), 2)
-            for c, v in sideboard.items()
-        }
-        self.combined_sideboards = dict(
+        sideboard = {c: round(v, 2) for c, v in sideboard.items()}
+        combined_sideboards = dict(
             sorted(sideboard.items(), key=lambda item: item[1], reverse=True)
         )
 
-        return self
-
-    def pretty_print(self):
-        pprint(self.combined_chosen_champs)
-        pprint(self.combined_main_deck)
-        pprint(self.combined_battlefields)
-        pprint(self.combined_runes)
-        pprint(self.combined_sideboards)
+        return AnalyzerResult(
+            self.excluded_cards,
+            excluded_decks,
+            combined_chosen_champs,
+            combined_main_deck=combined_main_deck,
+            combined_battlefields=combined_battlefields,
+            combined_runes=combined_runes,
+            combined_sideboards=combined_sideboards,
+        )

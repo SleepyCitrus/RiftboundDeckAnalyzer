@@ -1,0 +1,46 @@
+Date:
+2026-05-05
+
+Tournament Size:
+117
+
+Legend:
+1 Leblanc, Deceiver
+
+Champion:
+1 LeBlanc, Fragmented
+
+MainDeck:
+3 Karthus, Eternal
+2 Ruined Rex
+2 Honest Broker
+3 Glasc Mixologist
+3 Watchful Sentry
+2 Thousand-Tailed Watcher
+3 Soaring Scout
+2 Sacrifice
+1 Hidden Blade
+2 Cull the Weak
+2 Mirror Image
+2 Vi, Peacekeeper
+3 Seal of Unity
+3 Baited Hook
+2 Stupefy
+2 Galio, Indefatigable
+2 Harnessed Dragon
+
+Battlefields:
+1 Dusk Rose Lab
+1 Trifarian War Camp
+1 Zaun Warrens
+
+Rune Pool:
+7 Order Rune
+5 Mind Rune
+
+Sideboard:
+2 Salvage
+2 Black Rose Dignitary
+2 The Ruination
+1 Vi, Peacekeeper
+1 Imperial Decree
