@@ -1,4 +1,4 @@
-# RiftboundDeckAnalyzer
+# Riftbound Deck Examiner
 
 This project is meant as a lightweight analysis of Riftbound decks. For a specific legend, we can ideally determine the most central cards based on popularity, copies per deck, and other statistics.
 
@@ -27,5 +27,5 @@ To run a specific script, look at the aliases defined in `[project.scripts]` in 
 Alternatively, to run specific files use the poetry run python command (assuming python points to python3)
 
 ```
-➜ poetry run python src/riftbounddeckanalyzer/readers/deck_reader.py
+➜ poetry run python src/riftbounddeckexaminer/readers/deck_reader.py
 ```
