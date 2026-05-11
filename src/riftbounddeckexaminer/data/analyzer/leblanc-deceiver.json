@@ -1,0 +1,94 @@
+{
+    "excluded_cards": [],
+    "excluded_decks": 0,
+    "combined_chosen_champs": {
+        "LeBlanc, Fragmented": 0.8,
+        "LeBlanc, Everywhere at Once": 0.2
+    },
+    "combined_main_deck": {
+        "unit": {
+            "Soaring Scout": 2.8,
+            "Karthus, Eternal": 2.6,
+            "Glasc Mixologist": 2.6,
+            "Watchful Sentry": 2.5,
+            "Thousand-Tailed Watcher": 2.4,
+            "Ruined Rex": 2.1,
+            "LeBlanc, Fragmented": 2.0,
+            "Honest Broker": 1.9,
+            "Vi, Peacekeeper": 1.5,
+            "Black Rose Dignitary": 1.1,
+            "Rift Herald": 1.1,
+            "Chakram Dancer": 0.7,
+            "Harnessed Dragon": 0.6,
+            "Carrion Dredger": 0.4,
+            "LeBlanc, Everywhere at Once": 0.4,
+            "Cruel Patron": 0.3,
+            "Hwei, Brooding Painter": 0.3,
+            "Galio, Indefatigable": 0.2,
+            "Ravenbloom Student": 0.2,
+            "Shen, Kinkou": 0.2,
+            "Azir, Sovereign": 0.2,
+            "Kai'Sa, Evolutionary": 0.1,
+            "Atakhan": 0.1
+        },
+        "spell": {
+            "Cull the Weak": 2.3,
+            "Mirror Image": 2.3,
+            "Deathgrip": 2.2,
+            "Hidden Blade": 2.0,
+            "Sacrifice": 1.9,
+            "Stupefy": 1.0,
+            "Smoke and Mirrors": 0.4,
+            "Facebreaker": 0.2,
+            "Shadow's Call": 0.2,
+            "Singularity": 0.1,
+            "Salvage": 0.1,
+            "Tactical Retreat": 0.1,
+            "Eclipse": 0.1,
+            "Wages of Pain": 0.1
+        },
+        "gear": {
+            "Seal of Unity": 0.7,
+            "Baited Hook": 0.6,
+            "Forge of the Future": 0.2,
+            "Sprite Fountain": 0.1
+        }
+    },
+    "combined_battlefields": {
+        "Dusk Rose Lab": 1.0,
+        "Windswept Hillock": 0.7,
+        "Trifarian War Camp": 0.4,
+        "Star Spring": 0.3,
+        "Forbidding Waste": 0.3,
+        "Zaun Warrens": 0.1,
+        "Black Flame Altar": 0.1,
+        "Frozen Fortress": 0.1
+    },
+    "combined_runes": {
+        "Order Rune": 7.2,
+        "Mind Rune": 4.8
+    },
+    "combined_sideboards": {
+        "Salvage": 2.1,
+        "Vi, Peacekeeper": 0.9,
+        "Ashe, Focused": 0.7,
+        "Bellows Breath": 0.5,
+        "Black Rose Dignitary": 0.5,
+        "The Ruination": 0.5,
+        "Atakhan": 0.5,
+        "LeBlanc, Everywhere at Once": 0.4,
+        "Cull the Weak": 0.3,
+        "Hwei, Brooding Painter": 0.2,
+        "Time Warp": 0.2,
+        "Galio, Indefatigable": 0.2,
+        "Harnessed Dragon": 0.2,
+        "Hidden Blade": 0.1,
+        "Imperial Decree": 0.1,
+        "Ruined Rex": 0.1,
+        "Safety Inspector": 0.1,
+        "Unchecked Power": 0.1,
+        "Sacrifice": 0.1,
+        "Turn to Dust": 0.1,
+        "Singularity": 0.1
+    }
+}

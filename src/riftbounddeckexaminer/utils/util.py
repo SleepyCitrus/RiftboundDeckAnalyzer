@@ -1,4 +1,5 @@
 from collections import defaultdict
+import sys
 
 
 def get_user_input[T](
@@ -38,7 +39,9 @@ def get_user_input[T](
 
         full_prompt = "\n".join(option_list) + "\n"
 
-        user_choice = input(full_prompt)
+        print(full_prompt)
+        sys.stdout.flush()
+        user_choice = input()
 
         if user_choice.isdigit() and int(user_choice) in numbered_options:
             if multiselect:
@@ -56,3 +59,40 @@ def get_user_input[T](
         elif multiselect and not user_choice:
             return selections
         retry = True
+
+
+def get_user_input_freeform_int(
+    default: int, max: int, min: int = 0, prompt: str = ""
+) -> int:
+    """
+    Get an integer value from user input. Includes default, min, and max in the prompt automatically.
+    Example:
+
+    {prompt}
+    Min: 0 Max: 10 [default: 10 (enter to continue)]
+    """
+    retry = False
+    while True:
+        prompts = [""]
+        if retry:
+            prompts.append("Invalid input, retry:")
+        prompts.append(prompt)
+        prompts.append(
+            f"Min: {min} Max: {max} [default: {default} (enter to continue)]"
+        )
+        full_prompt = "\n".join(prompts) + "\n"
+        print(full_prompt)
+        user_choice = input()
+
+        if not user_choice:
+            return default
+        elif user_choice.isdigit():
+            amount = int(user_choice)
+            if amount <= max and amount >= min:
+                return amount
+
+        retry = True
+
+
+def unpack_single_dict_entry[T](single: dict[str, T]) -> tuple[str, T]:
+    return next(iter(single.items()))

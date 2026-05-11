@@ -1,5 +1,5 @@
 [project]
-name = "riftbounddeckanalyzer"
+name = "riftbounddeckexaminer"
 version = "0.1.0"
 description = ""
 authors = [
@@ -8,6 +8,8 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "selenium (>=4.43.0,<5.0.0)",
+    "seleniumbase (>=4.48.4,<5.0.0)"
 ]
 
 
@@ -16,7 +18,7 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [project.scripts]
-read-decks = "riftbounddeckanalyzer.readers.deck_reader:main_function"
+read-decks = "riftbounddeckexaminer.examiners.examiner_manager:main_function"
 
 [tool.black]
 skip-magic-trailing-comma = true
