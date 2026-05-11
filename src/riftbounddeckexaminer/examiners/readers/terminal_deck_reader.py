@@ -6,6 +6,7 @@ from typing import TextIO
 
 from riftbounddeckexaminer.examiners.readers.deck_reader import DeckReader
 from riftbounddeckexaminer.examiners.readers.decklist_metadata import DecklistMetadata
+from riftbounddeckexaminer.riftbound.card import Card, CardType
 from riftbounddeckexaminer.riftbound.deck import DATE_FORMAT, Deck
 from riftbounddeckexaminer.utils.util import get_user_input
 
@@ -15,7 +16,11 @@ DECKS_PATH = Path(f"{Path.cwd()}/src/riftbounddeckexaminer/data/decklists")
 @dataclass
 class TerminalDeckReader(DeckReader):
 
-    unique_cards: set[str] = field(default_factory=lambda: set())
+    @classmethod
+    def reader_description(cls) -> str:
+        return "Reads deck information found in local files '/src/riftbounddeckexaminer/data/decklists/'"
+
+    unique_cards: set[Card] = field(default_factory=lambda: set())
 
     def read_raw_line(self, file: TextIO) -> str:
         try:
@@ -84,8 +89,11 @@ class TerminalDeckReader(DeckReader):
                         deck.chosen_champion = chosen_champ
                     elif DecklistMetadata.MAIN_DECK in line:
                         cards = self.read_block(f)
-                        deck.main_deck = cards
-                        self.unique_cards.update(cards.keys())
+                        deck.main_deck[CardType.UNIT] = cards
+                        unique_card = [
+                            Card(name, CardType.UNIT) for name in cards.keys()
+                        ]
+                        self.unique_cards.update(unique_card)
                     elif DecklistMetadata.BATTLEFIELDS in line:
                         cards = self.read_block(f)
                         deck.battlefields = cards
@@ -117,9 +125,9 @@ class TerminalDeckReader(DeckReader):
 
         return next(iter(user_input.items()))
 
-    def exclude_cards(self) -> dict[str, str]:
+    def exclude_cards(self) -> dict[str, Card]:
         return get_user_input(
-            {x: x for x in self.unique_cards},
+            {x.name: x for x in self.unique_cards},
             "Choose any decks with the following cards to exclude (enter to continue):",
             multiselect=True,
         )

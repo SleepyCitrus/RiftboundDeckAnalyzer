@@ -1,0 +1,87 @@
+{
+    "excluded_cards": [],
+    "excluded_decks": 0,
+    "combined_chosen_champs": {
+        "Lillia, Fae Fawn": 1.0
+    },
+    "combined_main_deck": {
+        "unit": {
+            "Ravenbloom Student": 2.6,
+            "Thousand-Tailed Watcher": 2.4,
+            "Plundering Poro": 2.2,
+            "Lillia, Fae Fawn": 2.0,
+            "Sprite Queen": 1.3,
+            "Keeper of Masks": 0.7,
+            "Petal Pixie": 0.5,
+            "Trevor Snoozebottom": 0.3,
+            "Sprite Mother": 0.3,
+            "Chakram Dancer": 0.2,
+            "Hwei, Brooding Painter": 0.2,
+            "Lillia, Protector of Dreams": 0.2,
+            "LeBlanc, Everywhere at Once": 0.2,
+            "Janna, Savior": 0.1,
+            "Irelia, Fervent": 0.1,
+            "Whiteflame Protector": 0.1,
+            "Vilemaw": 0.1
+        },
+        "gear": {
+            "Sprite Fountain": 3.0,
+            "Mask of Foresight": 1.0,
+            "Heart of Dark Ice": 0.6,
+            "Brutalizer": 0.4
+        },
+        "spell": {
+            "Defy": 3.0,
+            "Discipline": 3.0,
+            "Stupefy": 2.9,
+            "Sprite Burst": 2.9,
+            "Smoke and Mirrors": 2.6,
+            "Lilting Lullaby": 2.1,
+            "Unchecked Power": 2.0,
+            "Charm": 1.8,
+            "En Garde": 0.9,
+            "Back Off": 0.4,
+            "Retreat": 0.4,
+            "Sprite Call": 0.3,
+            "Singularity": 0.2
+        }
+    },
+    "combined_battlefields": {
+        "Black Flame Altar": 0.8,
+        "Seat of Power": 0.6,
+        "Dusk Rose Lab": 0.6,
+        "Forbidding Waste": 0.4,
+        "The Arena's Greatest": 0.3,
+        "Vaults of Helia": 0.1,
+        "The Grand Plaza": 0.1,
+        "Forge of the Fluft": 0.1
+    },
+    "combined_runes": {
+        "Mind Rune": 6.5,
+        "Calm Rune": 5.5
+    },
+    "combined_sideboards": {
+        "Turn to Dust": 1.7,
+        "Falling Comet": 1.3,
+        "Disarming Rake": 0.7,
+        "Back Off": 0.5,
+        "Vilemaw": 0.5,
+        "Mask of Foresight": 0.4,
+        "Singularity": 0.4,
+        "Rocket Barrage": 0.4,
+        "Unchecked Power": 0.3,
+        "Charm": 0.2,
+        "Hwei, Brooding Painter": 0.2,
+        "Plundering Poro": 0.2,
+        "Flurry of Feathers": 0.2,
+        "Chakram Dancer": 0.2,
+        "Dr. Mundo, Expert": 0.1,
+        "En Garde": 0.1,
+        "Brutalizer": 0.1,
+        "Eclipse": 0.1,
+        "Whiteflame Protector": 0.1,
+        "Lilting Lullaby": 0.1,
+        "Irelia, Fervent": 0.1,
+        "Sprite Burst": 0.1
+    }
+}

@@ -61,5 +61,38 @@ def get_user_input[T](
         retry = True
 
 
+def get_user_input_freeform_int(
+    default: int, max: int, min: int = 0, prompt: str = ""
+) -> int:
+    """
+    Get an integer value from user input. Includes default, min, and max in the prompt automatically.
+    Example:
+
+    {prompt}
+    Min: 0 Max: 10 [default: 10 (enter to continue)]
+    """
+    retry = False
+    while True:
+        prompts = [""]
+        if retry:
+            prompts.append("Invalid input, retry:")
+        prompts.append(prompt)
+        prompts.append(
+            f"Min: {min} Max: {max} [default: {default} (enter to continue)]"
+        )
+        full_prompt = "\n".join(prompts) + "\n"
+        print(full_prompt)
+        user_choice = input()
+
+        if not user_choice:
+            return default
+        elif user_choice.isdigit():
+            amount = int(user_choice)
+            if amount <= max and amount >= min:
+                return amount
+
+        retry = True
+
+
 def unpack_single_dict_entry[T](single: dict[str, T]) -> tuple[str, T]:
     return next(iter(single.items()))

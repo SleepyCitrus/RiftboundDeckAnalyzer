@@ -1,0 +1,95 @@
+{
+    "excluded_cards": [],
+    "excluded_decks": 0,
+    "combined_chosen_champs": {
+        "Fiora, Victorious": 0.7,
+        "Fiora, Worthy": 0.3
+    },
+    "combined_main_deck": {
+        "unit": {
+            "Sett, Brawler": 2.7,
+            "Spectral Matron": 2.5,
+            "Unsung Hero": 2.2,
+            "Pit Rookie": 2.1,
+            "First Mate": 2.0,
+            "Kinkou Initiate": 1.8,
+            "Fiora, Victorious": 1.4,
+            "Harnessed Dragon": 1.1,
+            "Ashe, Focused": 0.8,
+            "Fiora, Worthy": 0.7,
+            "Rift Herald": 0.6,
+            "Demacian Diplomat": 0.6,
+            "Vi, Peacekeeper": 0.4,
+            "Akshan, Mischievous": 0.4,
+            "Sea Monkey": 0.4,
+            "Yordle Explorer": 0.4,
+            "Dragonsoul Sage": 0.3,
+            "Elder Dragon": 0.2,
+            "Honest Broker": 0.2,
+            "Ruin Runner": 0.2,
+            "Fiora, Peerless": 0.1,
+            "Rengar, Trophy Hunter": 0.1,
+            "Atakhan": 0.1
+        },
+        "gear": {
+            "B.F. Sword": 2.4,
+            "Shepherd's Heirloom": 2.2,
+            "Baited Hook": 1.5,
+            "Doran's Blade": 0.2
+        },
+        "spell": {
+            "Riposte": 2.7,
+            "Challenge": 2.4,
+            "Punch First": 2.1,
+            "Grim Resolve": 1.9,
+            "Hidden Blade": 1.7,
+            "Sacrifice": 1.4,
+            "Flurry of Blades": 0.2,
+            "Repulse": 0.2,
+            "Sabotage": 0.1,
+            "Tactical Retreat": 0.1,
+            "Divine Judgment": 0.1,
+            "Salvage": 0.1,
+            "Shadow's Call": 0.1,
+            "Deathgrip": 0.1,
+            "Heroic Charge": 0.1
+        }
+    },
+    "combined_battlefields": {
+        "Sunken Temple": 1.0,
+        "Trifarian War Camp": 0.8,
+        "Monastery of Hirana": 0.4,
+        "The Candlelit Sanctum": 0.3,
+        "The Papertree": 0.1,
+        "Vilemaw's Lair": 0.1,
+        "Seat of Power": 0.1,
+        "Trapping Grounds": 0.1,
+        "Rockfall Path": 0.1
+    },
+    "combined_runes": {
+        "Order Rune": 6.2,
+        "Body Rune": 5.8
+    },
+    "combined_sideboards": {
+        "Salvage": 1.9,
+        "Unyielding Spirit": 1.5,
+        "Akshan, Mischievous": 1.1,
+        "Ashe, Focused": 0.6,
+        "Repulse": 0.5,
+        "Fiora, Worthy": 0.5,
+        "Sabotage": 0.2,
+        "Fiora, Peerless": 0.2,
+        "Hidden Blade": 0.2,
+        "Fiora, Victorious": 0.2,
+        "Baited Hook": 0.2,
+        "Demacian Diplomat": 0.1,
+        "Harnessed Dragon": 0.1,
+        "Grim Resolve": 0.1,
+        "Laurent Duelist": 0.1,
+        "Yordle Explorer": 0.1,
+        "Clash of Giants": 0.1,
+        "Challenge": 0.1,
+        "Riposte": 0.1,
+        "Atakhan": 0.1
+    }
+}
